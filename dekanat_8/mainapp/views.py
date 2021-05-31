@@ -31,7 +31,7 @@ def create_group(request):
         form = GroupForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Вы успешно добавили новость!')
+            messages.success(request, 'Вы успешно добавили группу!')
             return HttpResponseRedirect(reverse('mainapp:group_list'))
     else:
         form = GroupForm()
