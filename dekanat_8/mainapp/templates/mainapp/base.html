@@ -14,7 +14,7 @@
         </li>
         {% if user.is_staff %}
             <li class="nav-item"><a href="{% url 'mainapp:group_list' %}" class="nav-link">Все группы</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">Создать группу</a></li>
+            <li class="nav-item"><a href="{% url 'mainapp:create_group' %}" class="nav-link">Создать группу</a></li>
         {% endif %}
     </ul>
 </header>
