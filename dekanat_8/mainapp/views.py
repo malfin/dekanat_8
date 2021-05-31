@@ -40,3 +40,20 @@ def create_group(request):
         'form': form,
     }
     return render(request, 'mainapp/add_group.html', context)
+
+
+def edit_group(request, pk):
+    group = Group.objects.get(id=pk)
+    if request.method == 'POST':
+        form = GroupForm(request.POST, instance=group)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Вы успешно изменили группу!')
+            return HttpResponseRedirect(reverse('mainapp:group_list'))
+    else:
+        form = GroupForm(instance=group)
+    context = {
+        'title': 'Изменить группу',
+        'form': form,
+    }
+    return render(request, 'mainapp/add_group.html', context)

@@ -15,7 +15,7 @@
 
     <div class="container">
         {% for item in group %}
-            <div class="card">
+            <div class="card mt-3">
                 <div class="card-title">
                     <h3>{{ item.name }}</h3>
                 </div>
@@ -25,7 +25,8 @@
                 <div class="card-footer">
                     <div class="row">
                         <div class="col"><a href="#">посмотреть</a></div>
-                        <div class="col"><a href="#">редактировать</a></div>
+                        <div class="col"><a href="{% url 'mainapp:edit_group' item.pk %}" class="btn btn-info">редактировать</a>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -23,4 +23,5 @@ urlpatterns = [
     path('', mainapp.index, name='index'),
     path('group/', mainapp.group_list, name='group_list'),
     path('group/create/', mainapp.create_group, name='create_group'),
+    path('group/edit/<int:pk>', mainapp.edit_group, name='edit_group'),
 ]
