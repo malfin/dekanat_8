@@ -21,4 +21,5 @@ app_name = 'mainapp'
 
 urlpatterns = [
     path('', mainapp.index, name='index'),
+    path('group/', mainapp.group_list, name='group_list'),
 ]
