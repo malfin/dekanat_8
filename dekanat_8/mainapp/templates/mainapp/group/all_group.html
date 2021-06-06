@@ -11,21 +11,20 @@
         <div class="col"><h3>Все группы</h3></div>
         <div class="col"><a href="{% url 'mainapp:create_group' %}" class="btn btn-success">Создать</a></div>
     </div>
-
-
     <div class="container">
-        {% for item in group %}
+        {% for item in groups %}
             <div class="card mt-3">
-                <div class="card-title">
+                <div class="card-title p-3">
                     <h3>{{ item.name }}</h3>
                 </div>
                 <div class="card-body">
-                    <p>{{ item.desc|linebreaksbr }}</p>
+                    <p>{{ item.specialty|linebreaksbr }}</p>
                 </div>
                 <div class="card-footer">
                     <div class="row">
-                        <div class="col"><a href="#">посмотреть</a></div>
-                        <div class="col"><a href="{% url 'mainapp:edit_group' item.pk %}" class="btn btn-info">редактировать</a>
+                        <div class="col"><a href="{% url 'mainapp:edit_group' item.pk %}" class="btn btn-info">Редактировать</a>
+                        </div>
+                        <div class="col"><a href="{% url 'mainapp:remove_group' item.pk %}" class="btn btn-danger">Удалить</a>
                         </div>
                     </div>
                 </div>

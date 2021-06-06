@@ -1,14 +1,13 @@
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
+from django.views.generic import FormView
 
-from forms import GroupForm
+from mainapp.forms import GroupForm
 from mainapp.models import Group
 
 
-@login_required
 def index(request):
     context = {
         'title': 'главная',
@@ -16,14 +15,23 @@ def index(request):
     return render(request, 'mainapp/index.html', context)
 
 
-@login_required
 def group_list(request):
-    group = Group.objects.all()
+    groups = Group.objects.all()
     context = {
         'title': 'группы',
-        'group': group,
+        'groups': groups,
     }
-    return render(request, 'mainapp/all_group.html', context)
+    return render(request, 'mainapp/group/all_group.html', context)
+
+
+# class CreateGroupViews(FormView):
+#     template_name = 'mainapp/group/all_group.html'
+#     form_class = GroupForm
+#     success_url = HttpResponseRedirect(reverse('mainapp:group_list'))
+#
+#     def form_valid(self, form):
+#         form.save()
+#         return HttpResponseRedirect(reverse('mainapp:group_list'))
 
 
 def create_group(request):
@@ -39,11 +47,11 @@ def create_group(request):
         'title': 'Добавить группу',
         'form': form,
     }
-    return render(request, 'mainapp/add_group.html', context)
+    return render(request, 'mainapp/group/add_group.html', context)
 
 
 def edit_group(request, pk):
-    group = Group.objects.get(id=pk)
+    group = get_object_or_404(Group, id=pk)
     if request.method == 'POST':
         form = GroupForm(request.POST, instance=group)
         if form.is_valid():
@@ -56,4 +64,11 @@ def edit_group(request, pk):
         'title': 'Изменить группу',
         'form': form,
     }
-    return render(request, 'mainapp/add_group.html', context)
+    return render(request, 'mainapp/group/add_group.html', context)
+
+
+def remove_group(request, pk):
+    group = Group.objects.get(id=pk)
+    group.delete()
+    messages.success(request, 'Вы успешно удалили группу!')
+    return HttpResponseRedirect(reverse('mainapp:group_list'))

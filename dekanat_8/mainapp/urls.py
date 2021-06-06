@@ -17,11 +17,21 @@ from django.urls import path
 
 import mainapp.views as mainapp
 
+
 app_name = 'mainapp'
 
 urlpatterns = [
     path('', mainapp.index, name='index'),
+
     path('group/', mainapp.group_list, name='group_list'),
+
     path('group/create/', mainapp.create_group, name='create_group'),
-    path('group/edit/<int:pk>', mainapp.edit_group, name='edit_group'),
+
+    path('group/edit/<int:pk>/', mainapp.edit_group, name='edit_group'),
+
+    path('group/remove/<int:pk>/', mainapp.remove_group, name='remove_group'),
+
+    # path('group/views/<int:pk>/', mainapp.views_group, name='views_group'),
+
+
 ]

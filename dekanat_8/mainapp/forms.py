@@ -9,7 +9,7 @@ class GroupForm(forms.ModelForm):
         model = Group
         fields = (
             'name',
-            'desc',
+            'specialty',
         )
 
     def __init__(self, *args, **kwargs):
@@ -17,4 +17,3 @@ class GroupForm(forms.ModelForm):
         for name, item in self.fields.items():
             item.widget.attrs['class'] = 'form-control mt-1'
             item.widget.attrs['style'] = 'resize: none'
-            item.help_text = ''

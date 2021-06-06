@@ -3,7 +3,7 @@ from django.db import models
 
 class Group(models.Model):
     name = models.CharField(verbose_name='название группы', max_length=256)
-    desc = models.TextField(verbose_name='Специальность')
+    specialty = models.TextField(verbose_name='Специальность')
 
     def __str__(self):
         return self.name
