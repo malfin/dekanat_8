@@ -1,0 +1,39 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+{% block content %}
+    {% for item in messages %}
+        <div class="alert alert-info" role="alert">
+            {{ item }}
+        </div>
+    {% endfor %}
+
+    <h3>Группа</h3>
+
+    <div class="row">
+        <div class="col"><a href="{% url 'mainapp:create_student' %}" class="btn btn-success">Добавить студента</a>
+        </div>
+    </div>
+
+    <div class="container">
+        {% for item in students %}
+            <div class="card mt-3">
+                <div class="card-title p-3">
+                    <h3>{{ item.surname }} {{ item.name }} {{ item.patronymic }}</h3>
+                </div>
+                <div class="card-body">
+                    <p>Группа: {{ item.group }}</p>
+                    <p>Дата рождения: {{ item.dob }}</p>
+                </div>
+                <div class="card-footer">
+                    <div class="row">
+                        <div class="col"><a href="{% url 'mainapp:edit_student' item.pk %}" class="btn btn-info">Редактировать</a>
+                        </div>
+                        <div class="col"><a href="{% url 'mainapp:remove_student' item.pk %}" class="btn btn-danger">Удалить</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

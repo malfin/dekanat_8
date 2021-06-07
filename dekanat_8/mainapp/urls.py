@@ -17,7 +17,6 @@ from django.urls import path
 
 import mainapp.views as mainapp
 
-
 app_name = 'mainapp'
 
 urlpatterns = [
@@ -31,7 +30,14 @@ urlpatterns = [
 
     path('group/remove/<int:pk>/', mainapp.remove_group, name='remove_group'),
 
-    # path('group/views/<int:pk>/', mainapp.views_group, name='views_group'),
+    path('group/show/<int:pk>/', mainapp.group_show, name='group_show'),
 
+    path('group/student/create/', mainapp.create_student, name='create_student'),
+
+    path('group/student/edit/<int:pk>', mainapp.edit_student, name='edit_student'),
+
+    path('group/student/remove/<int:pk>', mainapp.remove_student, name='remove_student'),
+
+    # path('group/views/<int:pk>/', mainapp.views_group, name='views_group'),
 
 ]

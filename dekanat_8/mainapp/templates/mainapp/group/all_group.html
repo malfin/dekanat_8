@@ -22,6 +22,8 @@
                 </div>
                 <div class="card-footer">
                     <div class="row">
+                        <div class="col"><a href="{% url 'mainapp:group_show' item.pk %}" class="btn btn-success">Посмотреть</a>
+                        </div>
                         <div class="col"><a href="{% url 'mainapp:edit_group' item.pk %}" class="btn btn-info">Редактировать</a>
                         </div>
                         <div class="col"><a href="{% url 'mainapp:remove_group' item.pk %}" class="btn btn-danger">Удалить</a>
